@@ -1,0 +1,28 @@
+{
+  "name": "youtube-node-app",
+  "version": "0.0.1",
+  "description": "Litte Youtube App written with Electron and YoutubeDataAPI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akad1070/youtubenode-app.git"
+  },
+  "keywords": [
+    "youtube",
+    "node",
+    "electron"
+  ],
+  "author": "A. Kad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Akad1070/youtubenode-app/issues"
+  },
+  "homepage": "https://github.com/Akad1070/youtubenode-app#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^1.3.5"
+  }
+}
