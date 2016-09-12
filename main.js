@@ -1,15 +1,20 @@
 'use strict';
 
 
-const app = require('app');
-const BrowserWindow = require('browser-window');
+const app = require('app'); // Control the app Life
+const BrowserWindow = require('browser-window'); // Create a native browser
 
-let mainWindow = null; //Will be the main app' window
+// Keep a global reference of the window object, otherwise, the window will
+// be closed automatically when the garbage collector pass.
+var mainWindow = null; //Will be the main app' window
 
 
 
 app.on('ready', function() {
     mainWindow = new BrowserWindow({
+        minWidth: 640,
+        minHeight: 400,
+        
         height: 600,
         width: 800
     });
