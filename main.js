@@ -1,8 +1,15 @@
 'use strict';
+/*
+const electron = require('electron');
+const path = require('path');
 
+const app = electron.app; // Control the app Life
+const BrowserWindow = electron.BrowserWindow; // Create a native browser
+*/
 
-const app = require('app'); // Control the app Life
-const BrowserWindow = require('browser-window'); // Create a native browser
+const {app} = require('electron')
+const {BrowserWindow} = require('electron')
+
 
 // Keep a global reference of the window object, otherwise, the window will
 // be closed automatically when the garbage collector pass.
@@ -19,5 +26,5 @@ app.on('ready', function() {
         width: 800
     });
     //Start now the render process
-    mainWindow.loadUrl('file://' + __dirname + '/app/public/index.html');
+    mainWindow.loadURL	('file://' + __dirname + '/app/public/index.html');
 });
