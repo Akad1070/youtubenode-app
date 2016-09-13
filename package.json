@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "express": "^4.14.0",
+    "inspinia": "^2.2.4",
     "winston": "^2.2.0"
   }
 }

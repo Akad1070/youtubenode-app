@@ -70,7 +70,8 @@ let _configureApi = function(callback){
 	// Define the rendering engine : jade
 	//app.set('view engine', 'jade');
 	
-
+	if(callback)
+		callback(null,"[API] API Configured")
 }
 
 
@@ -117,7 +118,16 @@ let _configureRoutes = function (){
 
 exports = {
 	start :function (callback) {
-		
+		// Try to config the server
+		_configureApi(function (err,msg){
+			if(err) { // If any errors occurs, log it and call me back.
+		    	logger.error(err.message);
+		    	if (callback) return callback(err);
+			}
+	    	logger.info(msg);		// Log all info about the config 
+			_configureRoutes(); 	// Config the routes
+	
+		});
 	},
 	
 	stop	: function (callback) {
