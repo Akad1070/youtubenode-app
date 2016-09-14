@@ -7,9 +7,7 @@ const app = electron.app; // Control the app Life
 const BrowserWindow = electron.BrowserWindow; // Create a native browser
 */
 
-const {app} = require('electron')
-const {BrowserWindow} = require('electron')
-
+const {app, BrowserWindow, ipcMain} = require('electron');
 
 // Keep a global reference of the window object, otherwise, the window will
 // be closed automatically when the garbage collector pass.
@@ -31,4 +29,9 @@ app.on('ready', function() {
     });
     //Start now the render process
     mainWindow.loadURL	('file://' + __dirname + '/app/public/index.html');
+});
+
+
+ipcMain.on('close-main-window', function () {
+    app.quit();
 });

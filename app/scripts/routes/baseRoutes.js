@@ -55,7 +55,7 @@ let serverError = function (err, req, res, next){
  * 		- Check JWT for authorized route
  *
  */
-var	gotReq = function (req,res,next) {
+let	gotReq = function (req,res,next) {
 	// Log all req with the Type of method and the url
 	logger.info('[Server] Got a '+req.method +' for ' + req.url);
 	next();
@@ -66,10 +66,52 @@ var	gotReq = function (req,res,next) {
 
 
 
+/**
+ *
+ * Route methods : GET method
+ *
+ */
+
+let homePage = function (req,res,next) {
+	res.status(200);
+	res.render('home',{header : "Welcome to YoutubeNode"});
+ };
+
+
+
+let loginPage = function (req,res,next) {
+	res.status(200);
+	res.render('login',{header : "Welcome to YoutubeNode"});
+ };
+
+
+
+
+
+
+
+
+
+
+
+/**
+ *
+ * Route methods for anything posted : POST method
+ *
+ */
+
+
 
 
 exports = {
     error404        : notFound,
     error500        : serverError,
-    beforeRequest   : gotReq
+    beforeRequest   : gotReq,
+    
+    home			: homepage,
+    login			: login,
+    
+    
+    
+  
 };

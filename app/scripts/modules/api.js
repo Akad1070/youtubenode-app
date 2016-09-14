@@ -25,17 +25,17 @@
  */
 
 // Built-in
-const {express}   	= require("express");
+const {express}   	= require('express');
 const {bodyParser}	= require('body-parser');
 const {path}      	= require('path');
 
-// Custom
+// Mine
 const logger    	= require('./logger');
 const config    	= require('./config');
 
 
 // Routes
-const defRoute		= require('../routes/routes');
+const baseRoute		= require('../routes/baseRoutes');
 const userRoute		= require('../routes/user');
 
 
@@ -62,7 +62,7 @@ let _configureApi = function(callback){
 
 	// Error handlers
 	// production error handler
-	app.use(defRoute.checkErrorProd);
+	app.use(baseRoute.checkErrorProd);
 
 	// The directory for the template files
 	app.set('views',path.join(__dirname,'/../../views'));
@@ -71,27 +71,27 @@ let _configureApi = function(callback){
 	//app.set('view engine', 'jade');
 	
 	if(callback)
-		callback(null,"[API] API Configured")
-}
+		callback(null,"[API] API Configured");
+};
 
 
 
 let _configureRoutes = function (){
 
 	// Middleware to use before process all requests
-	app.use(defRoute.beforeRequest);
+	app.use(baseRoute.beforeRequest);
 
 
 	// Route to call for the homepage
-	app.get('/',defRoute.home);
+	app.get('/',baseRoute.home);
     
     
     app.route('/login')
-    	.get(defRoute.login)
-    	.post(defRoute.loginPosted);
+    	.get(baseRoute.login)
+    	.post(baseRoute.loginPosted);
     
     
-    app.get('/signup', defRoute.signup)
+    app.get('/signup', baseRoute.signup)
     	.get(userRoute.signup)
     	.post(userRoute.signupPosted);
     
@@ -100,13 +100,13 @@ let _configureRoutes = function (){
     /**
 	 *  Sub-Router handler for /vids
 	 */
-    let appVids = express.Router();
+    //let appVids = express.Router();
     
     
 	/* The 404 Route (ALWAYS Keep this as the last route) */
-	app.use(defRoute.error404); // 404 handler
-	app.use(defRoute.error500); // 500 handler
-}
+	app.use(baseRoute.error404); // 404 handler
+	app.use(baseRoute.error500); // 500 handler
+};
 
 
 
@@ -114,10 +114,8 @@ let _configureRoutes = function (){
  * Exports
  */
 
-// Methods
-
 exports = {
-	start :function (callback) {
+	start	: function (callback) {
 		// Try to config the server
 		_configureApi(function (err,msg){
 			if(err) { // If any errors occurs, log it and call me back.
