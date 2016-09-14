@@ -20,7 +20,7 @@ const logger = require("../modules/logger");
 // For the 404 Error
 let notFound = function (req, res){
 	// log error:
-	logger.log('[API] 404 error: ' + req.url);
+	logger.error('[API] 404 error: ' + req.url);
 	res.render('errors/404', {
 		status: 404,
 		locals:{ title: 'Ressource Not Found 404 :(' }

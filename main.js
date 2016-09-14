@@ -21,9 +21,13 @@ app.on('ready', function() {
     mainWindow = new BrowserWindow({
         minWidth: 640,
         minHeight: 400,
-        
+        center : true,
         height: 600,
-        width: 800
+        width: 800,
+        
+        frame : false,
+        autoHideMenuBar : true,
+        darkTheme : true
     });
     //Start now the render process
     mainWindow.loadURL	('file://' + __dirname + '/app/public/index.html');
