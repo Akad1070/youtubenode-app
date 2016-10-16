@@ -1,0 +1,45 @@
+
+
+body{
+	-webkit-app-region: drag;
+	-webkit-user-select: none;
+	user-select:none;
+	font-size: 14px;
+}
+
+a, button{
+    -webkit-app-region: no-drag;
+}
+
+.login-panel{	margin-top: 5%;}
+
+#navbar-search{
+    margin-bottom: 0 ;
+}
+
+
+#btn-minim-menu{
+    padding: 6px 12px 6px 12px;
+    
+}
+
+
+.navbar-form-custom{
+    float: right;
+    /* height: 50px; */
+    padding: 0;
+    width: 200px;
+    display: inline-flex
+    
+}
+
+#form-search .form-control {
+    /*border: 3px solid #e5e6e7;*/
+    border: 3px solid;
+    
+    float: right;
+    font-size: 14px;
+    height: 50px;
+    width: 90%;
+    padding: 6px 12px 6px 12px;
+}
