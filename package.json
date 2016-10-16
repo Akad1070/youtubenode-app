@@ -5,7 +5,7 @@
   "main": "./main.js",
   "scripts": {
     "package": "electron-packager ./ YoutubeNode --all --out ~/Desktop/YoutubeNodee --version 0.1 --overwrite --icon=./zapp/img/app-icon.icns",
-    "server": "nodemon -V --watch server --exec babel-node -- server/server.js --presets react",
+    "server": "nodemon -V --watch server --exec babel-node --presets-react -- server/server.js",
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
