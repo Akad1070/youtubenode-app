@@ -52,6 +52,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.5",
+    "electron": "^1.4.3",
     "jsonwebtoken": "^7.1.9",
     "lodash": "^4.16.4",
     "react": "^15.1.0",

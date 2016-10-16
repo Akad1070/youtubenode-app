@@ -12,8 +12,17 @@ import userRoute        from './routes/UserRoute';
 
 const app = express();
 
-let server;
 
+
+const internals = {
+    server : null,
+    listeningOn : '',
+    options : {
+        'HOST' : process.env.IP, 
+        'PORT' : process.env.PORT
+    }
+    
+}
 
 
 function configureServer(cb){
@@ -69,19 +78,21 @@ function configureRoutes(){
  * Start the API Server
  * @param cb Callback function when the web server is listening
  */
- let start = function (cb){
+ export function start(options={},cb=null){
+     internals.options = {...internals.options,options};
     // Firstly, config the server
     configureServer(() => {
         configureRoutes();  // Then, connect all routes to /api
         
+        internals.listeningOn = `http://${internals.options.IP}:${internals.options.PORT}`;
 		// Only if the server isn't already listenning
-        if(!server){
-            server = app.listen(process.env.PORT || 8080,process.env.IP, ()=>{
-                console.log('Server ON - Listenning on '+process.env.IP+':'+process.env.PORT);
-                if(cb){
-                    cb(null);
-                }
+        if(!internals.server){
+            internals.server = app.listen(internals.options.HOST, internals.options.PORT, ()=>{
+                console.log('Server ON - ' + internals.listeningOn );
+                if(cb)  return cb(null);
             });
+        }else{
+            if(cb)  return cb(new Error('Server already ON - '+internals.listeningOn));
         }
     });
 };
@@ -92,16 +103,12 @@ function configureRoutes(){
  * @param Callback function when the web server is no more listening
  */
 export function stop(cb){
-    if (server && typeof server.close == 'function') {
-		server.close();
-        console.log('Server ON - Listenning on '+process.env.IP+':'+process.env.PORT);
+    if (internals.server && typeof internals.server.close == 'function') {
+		internals.server.close();
+        console.log('Server OFF - '+internals.listeningOn);
 		if (cb) cb();
 	} else {
-		//logger.warn('[Server] Cannot stop web server not yet init. listening on ' + config.server.host + ':' + process.env.PORT);
-		if (cb) cb();
+		//console.log('[Server] Cannot stop web server not yet init. URL : '+interals.listeningOn);
 	}
-    
 }
 
-
-start();
